@@ -3,6 +3,8 @@ import puppeteer from "puppeteer";
 const email = process.env.EMAIL
 const password = process.env.PASSWORD
 
+if (!email || !password) throw new Error('credentials not found')
+
 const browser = await puppeteer.launch({headless: 'new'})
 const context = browser.defaultBrowserContext();
 await context.overridePermissions('https://apnaklub.keka.com', ['geolocation']);
