@@ -12,10 +12,14 @@ await context.overridePermissions('https://apnaklub.keka.com', ['geolocation']);
 const page = await browser.newPage()
 
 await loginGoogle()
+console.log('google login done')
 await kekaLogin()
-await sleep(8000)
+console.log('keka login done')
+await sleep(12000)
 await toggleClockInOut()
+console.log('done')
 setTimeout(async () => await browser.close(), 2000)
+
 
 async function loginGoogle() {
   await page.goto('https://www.gmail.com')
@@ -48,7 +52,7 @@ async function findAndClickButton(selector) {
   if (button) {
     // console.log('button found 3')
     await button.click()
-    await sleep(1000)
+    await sleep(2000)
   } else {
     console.log('button not found', selector)
   }
