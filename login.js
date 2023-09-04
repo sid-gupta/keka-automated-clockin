@@ -6,7 +6,7 @@ const password = process.env.PASSWORD
 if (!email || !password) throw new Error('credentials not found')
 
 const browser = await puppeteer.launch({headless: 'new'})
-const context = await browser.createIncognitoBrowserContext();
+const context = browser.defaultBrowserContext();
 await context.overridePermissions('https://apnaklub.keka.com', ['geolocation']);
 
 const page = await browser.newPage()
@@ -22,7 +22,8 @@ setTimeout(async () => await browser.close(), 2000)
 
 
 async function loginGoogle() {
-  await page.goto('https://www.gmail.com')
+  await page.goto('https://gmail.com')
+  await sleep(2000)
 
   await page.waitForSelector('input[type="email"]')
   await page.type('input[type="email"]', email)
