@@ -6,7 +6,7 @@ const password = process.env.PASSWORD
 if (!email || !password) throw new Error('credentials not found')
 
 const browser = await puppeteer.launch({headless: 'new'})
-const context = browser.createIncognitoBrowserContext();
+const context = await browser.createIncognitoBrowserContext();
 await context.overridePermissions('https://apnaklub.keka.com', ['geolocation']);
 
 const page = await browser.newPage()
